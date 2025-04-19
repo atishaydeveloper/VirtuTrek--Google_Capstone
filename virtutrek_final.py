@@ -2,22 +2,18 @@ import streamlit as st
 import os
 
 import nltk
-nltk.download('punkt')
+# Define a local nltk data directory
+nltk_data_dir = os.getenv('NLTK_DATA', os.path.join(os.getcwd(), 'nltk_data'))
+os.makedirs(nltk_data_dir, exist_ok=True)
+nltk.data.path.insert(0, nltk_data_dir)
 
-nltk_data_path = "/tmp/nltk_data"
-
-# Ensure the directory exists
-if not os.path.exists(nltk_data_path):
-    os.makedirs(nltk_data_path)
-
-# Tell NLTK to use the custom directory
-nltk.data.path.append(nltk_data_path)
-
-# Download the punkt tokenizer if it's not already available
+# Ensure the correct tokenizer is available
 try:
-    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt')       # for older NLTK versions
 except LookupError:
-    nltk.download('punkt', download_dir=nltk_data_path)
+    nltk.download('punkt_tab', download_dir=nltk_data_dir, quiet=True)  # NLTK ≥3.8.2 :contentReference[oaicite:9]{index=9}
+    # Fallback for environments still expecting 'punkt':
+    nltk.download('punkt',    download_dir=nltk_data_dir, quiet=True)
 
 os.environ["STREAMLIT_FILE_WATCHER_TYPE"] = "none"
 
