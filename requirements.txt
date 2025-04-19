@@ -17,3 +17,4 @@ faiss-cpu
 numpy
 nltk
 sentence-transformers
+google-search-results
