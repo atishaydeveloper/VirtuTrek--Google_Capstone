@@ -4,6 +4,11 @@ import os
 import nltk
 nltk.download('punkt')
 
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    print("punkt not found. Try downloading again.")
+
 os.environ["STREAMLIT_FILE_WATCHER_TYPE"] = "none"
 
 def main_page():
@@ -932,17 +937,17 @@ def tour_page():
     import faiss
     import numpy as np
     import nltk
-    from nltk.tokenize import sent_tokenize
+    
     from sentence_transformers import SentenceTransformer
     from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
     from langchain_community.utilities import SerpAPIWrapper
     from langchain.tools import Tool
     from langchain.agents import initialize_agent, AgentType
     from langchain.prompts import PromptTemplate
+    from nltk.tokenize import sent_tokenize
     
-    import time
-    # Setup
-    import nltk
+
+
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
