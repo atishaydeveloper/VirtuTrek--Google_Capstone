@@ -21,7 +21,8 @@ except LookupError:
 
 os.environ["STREAMLIT_FILE_WATCHER_TYPE"] = "none"
 
-st.legacy_caching.clear_cache()
+st.cache_resource.clear()
+st.cache.clear()
 
 def main_page():
     st.set_page_config(page_title="VirtuTrek-Personalized AI Travel Assistant ",page_icon="🌍", layout="wide")
