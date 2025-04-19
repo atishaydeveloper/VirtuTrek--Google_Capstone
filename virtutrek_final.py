@@ -991,12 +991,12 @@ def tour_page():
     if st.button("Plan"):
         if user_city and user_preferences:
             lang,translated_city_input = language(user_city)
-            time.sleep(5)
+            
             
             lang,translated_user_mood = language(user_mood)
-            time.sleep(5)
+            
             lang,translated_preferences_input = language(user_preferences)
-            time.sleep(5)
+            
             # ================== Wikipedia Fetch ==================
             def fetch_wiki_data(city):
                 title = city.replace(" ", "_")
@@ -1041,13 +1041,13 @@ def tour_page():
             search_tool = Tool(name="Search", func=search.run, description="Web search for local food")
             agent = initialize_agent([search_tool], llm=llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=False, handle_parsing_errors=True)
             
-            time.sleep(5)
+            
             
             def get_food_recs(city):
                 query = f"Top vegetarian and non-vegetarian food in {city}"
                 return agent.invoke({"input": query})
             
-            time.sleep(5)
+            
 
             food_recs = get_food_recs(translated_city_input)
 
@@ -1060,7 +1060,7 @@ def tour_page():
             embedder = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
             embeddings = embedder.embed_documents(chunks)
             
-            time.sleep(5)
+            
             
             # FAISS Vector Index
             dimension = len(embeddings[0])
@@ -1076,7 +1076,7 @@ def tour_page():
             user_query = f"Suggest a {translated_user_mood} tour in {translated_city_input} that includes {translated_preferences_input}"
             tour_info = get_custom_tour(user_query)
 
-            time.sleep(5)
+            
             
             # ================ Final Tour Plan Generation ==================
             prompt = PromptTemplate(
@@ -1116,7 +1116,7 @@ def tour_page():
                 "food": str(food_recs)
             })
 
-            time.sleep(5)
+            
             
             st.subheader("🏞️ Your Personalized Tour Plan")
             final_response = convert(lang,response.content)
