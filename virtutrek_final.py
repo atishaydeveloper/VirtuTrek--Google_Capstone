@@ -1,7 +1,10 @@
 import streamlit as st
 import os
-os.environ["STREAMLIT_FILE_WATCHER_TYPE"] = "none"
 
+import nltk
+nltk.download('punkt')
+
+os.environ["STREAMLIT_FILE_WATCHER_TYPE"] = "none"
 
 def main_page():
     st.set_page_config(page_title="VirtuTrek-Personalized AI Travel Assistant ",page_icon="🌍", layout="wide")
