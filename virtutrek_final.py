@@ -4,15 +4,16 @@ import os
 import nltk
 nltk.download('punkt')
 
-nltk_data_path = "/app/nltk_data"
+nltk_data_path = "/tmp/nltk_data"
 
+# Ensure the directory exists
 if not os.path.exists(nltk_data_path):
     os.makedirs(nltk_data_path)
 
-# Set NLTK's data path to the folder in the Streamlit environment
+# Tell NLTK to use the custom directory
 nltk.data.path.append(nltk_data_path)
 
-# Download the punkt tokenizer if not already present
+# Download the punkt tokenizer if it's not already available
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
