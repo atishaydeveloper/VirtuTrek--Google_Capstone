@@ -50,7 +50,7 @@ def main_page():
     """)
 
     # Impact of the Project with custom color
-    st.markdown("<h2 style='color: #00FFFF;'>Why Heritage Horizons Matters</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #00FFFF;'>Why VirtuTrek Matters</h2>", unsafe_allow_html=True)
     st.write("""
     Our platform redefines how people learn and interact with cultural heritage:
 
