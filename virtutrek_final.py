@@ -1051,7 +1051,8 @@ def tour_page():
 
             # ================ Food Recommendation ==================
             llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
-            search = SerpAPIWrapper(serpapi_api_key=SERPAPI_API_KEY)
+            serpapi_api_key=st.secrets["SERPAPI_API_KEY"]
+            search = SerpAPIWrapper(serpapi_api_key)
             search_tool = Tool(name="Search", func=search.run, description="Web search for local food")
             agent = initialize_agent([search_tool], llm=llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=False, handle_parsing_errors=True)
             
